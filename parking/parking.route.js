@@ -9,10 +9,10 @@ const router= express.Router();
 
 router.post("/parkingslot/add", async (req, res) => {
     try {
-        const { slotNumber, vehicleNumber } = req.body;
+        const { slotNumber, vehicleNumber,bookedTime,expiredTime } = req.body;
 
         // Basic validation
-        if (!slotNumber || !vehicleNumber) {
+        if (!slotNumber || !vehicleNumber || !bookedTime || !expiredTime) {
             return res.status(400).json({ error: 'Slot number and vehicle number are required.' });
         }
 
@@ -23,7 +23,7 @@ router.post("/parkingslot/add", async (req, res) => {
         }
 
         // Create a new parking slot
-        const newParkingSlot = new Parking({ slotNumber, vehicleNumber });
+        const newParkingSlot = new Parking({ slotNumber, vehicleNumber,bookedTime,expiredTime });
         await newParkingSlot.save();
 
         res.status(201).json({ message: 'Parking slot added successfully.' });

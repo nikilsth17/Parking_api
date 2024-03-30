@@ -22,12 +22,6 @@ const userSchema= new mongoose.Schema({
         minlength:2,
         maxlength:55,
     },
-    gender:{
-        type:String,
-        required:true,
-        trim:true,
-        enum:["Male","Female","Other"],
-    },
     location:{
         type:String,
         required:true,
